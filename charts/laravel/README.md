@@ -15,6 +15,7 @@ To install a release named `laravel`, run:
 ```sh
 helm install laravel laravel/laravel
 ```
+Check `values.yaml` for additional available customizations.
 
 ## Chart values
 
