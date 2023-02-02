@@ -18,7 +18,7 @@ containers:
     securityContext:
       {{- toYaml . | nindent 6 }}
   {{- end }}
-    image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag | default .Chart.AppVersion }}"
+    image: "{{ .Values.nginx.image.repository }}:{{ .Values.nginx.image.tag }}"
     imagePullPolicy: {{ .Values.nginx.image.pullPolicy }}
     ports:
       - name: http
@@ -47,7 +47,7 @@ containers:
     securityContext:
       {{- toYaml . | nindent 6 }}
   {{- end }}
-    image: "{{ .Values.laravel.image.repository }}:{{ .Values.laravel.image.tag | default .Chart.AppVersion }}"
+    image: "{{ .Values.laravel.image.repository }}:{{ .Values.laravel.image.tag }}"
     imagePullPolicy: {{ .Values.laravel.image.pullPolicy }}
   {{- if or .Values.laravel.extraEnv .Values.laravel.envWithTpl }}
     env:
