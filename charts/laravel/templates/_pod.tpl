@@ -24,10 +24,14 @@ containers:
       - name: http
         containerPort: {{ .Values.nginx.service.port }}
         protocol: TCP
+  {{- with .Values.nginx.livenessProbe }}
     livenessProbe:
-      {{- toYaml .Values.nginx.livenessProbe | nindent 6 }}
+      {{- toYaml . | nindent 6 }}
+  {{- end }}
+  {{- with .Values.nginx.readinessProbe }}
     readinessProbe:
-      {{- toYaml .Values.nginx.readinessProbe | nindent 6 }}
+      {{- toYaml . | nindent 6 }}
+  {{- end }}
   {{- with .Values.resources }}
     resources:
       {{- toYaml . | nindent 6 }}
