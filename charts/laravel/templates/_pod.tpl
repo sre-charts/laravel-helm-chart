@@ -69,10 +69,14 @@ containers:
     lifecycle:
       {{- toYaml . | nindent 6 }}
   {{- end }}
+  {{- with .Values.laravel.livenessProbe }}
     livenessProbe:
-      {{- toYaml .Values.laravel.livenessProbe | nindent 6 }}
+      {{- toYaml . | nindent 6 }}
+  {{- end }}
+  {{- with .Values.laravel.readinessProbe }}
     readinessProbe:
-      {{- toYaml .Values.laravel.readinessProbe | nindent 6 }}
+      {{- toYaml . | nindent 6 }}
+  {{- end }}
   {{- with .Values.resources }}
     resources:
       {{- toYaml . | nindent 6 }}
