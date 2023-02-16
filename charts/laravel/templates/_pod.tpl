@@ -65,6 +65,14 @@ containers:
     {{- with .Values.laravel.extraEnvFrom  }}
       {{- toYaml . | nindent 6 }}
     {{- end  }}
+  {{- if .Values.laravel.args }}
+    args:
+    {{- toYaml .Values.laravel.args | nindent 6 }}
+  {{- end}}
+  {{- if .Values.laravel.command }}
+    command:
+    {{- toYaml .Values.laravel.command | nindent 6 }}
+  {{- end }}
   {{- with .Values.laravel.lifecycle }}
     lifecycle:
       {{- toYaml . | nindent 6 }}
