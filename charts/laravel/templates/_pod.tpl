@@ -47,7 +47,7 @@ containers:
     securityContext:
       {{- toYaml . | nindent 6 }}
   {{- end }}
-    image: "{{ .Values.laravel.image.repository }}:{{ .Values.laravel.image.tag }}"
+    image: "{{ .Values.laravel.image.repository }}:{{ .Values.laravel.image.tag | default .Chart.AppVersion }}"
     imagePullPolicy: {{ .Values.laravel.image.pullPolicy }}
   {{- if or .Values.laravel.extraEnv .Values.laravel.envWithTpl }}
     env:
@@ -92,12 +92,18 @@ containers:
     volumeMounts:
       - name: shared-files
         mountPath: /usr/share/nginx/html
+      - name: php-fpm-conf
+        mountPath: /usr/local/etc/php-fpm.d/www.conf
+        subPath: www.conf
 volumes:
   - name: nginx-config
     configMap:
       name: {{ if .Values.nginx.configName }} {{ .Values.nginx.configName }} {{ else }} {{ .Release.Name }}-nginx-config {{ end }}
   - name: shared-files
     emptyDir: {}
+  - name: php-fpm-conf
+    configMap:
+      name: {{ template "laravel.fullname" . }}-fpm-conf
 {{- with .Values.nodeSelector }}
 nodeSelector:
   {{- toYaml . | nindent 2 }}
