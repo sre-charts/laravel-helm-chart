@@ -167,8 +167,8 @@ autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 100
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80
+  # targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 100Mi
 
 nodeSelector: {}
 
@@ -179,7 +179,6 @@ affinity: {}
 php:
   fpm:
     conf: |
-      ; Custom config
       ; Start a new pool named 'www'.
       ; the variable $pool can be used in any directive and will be replaced by the
       ; pool name ('www' here)
