@@ -30,8 +30,8 @@ spec:
       resource:
         name: memory
         target:
-          averageUtilization: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
-          type: Utilization
+          type: AverageValue
+          averageValue: {{ .Values.autoscaling.targetMemoryUtilizationPercentage }}
   {{- end }}
   {{- if .Values.autoscaling.customRules -}}
     {{- toYaml .Values.autoscaling.customRules | nindent 4}}

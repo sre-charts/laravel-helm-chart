@@ -167,8 +167,8 @@ autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 20
-  targetCPUUtilizationPercentage: 75
-  targetMemoryUtilizationPercentage: 75
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80Mi
   ## see https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/#autoscaling-on-multiple-metrics-and-custom-metrics
   customRules: []
 #     - type: Pods
