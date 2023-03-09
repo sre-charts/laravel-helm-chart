@@ -167,8 +167,9 @@ autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 20
-  targetCPUUtilizationPercentage: 80
-  # targetMemoryUtilizationPercentage: 80Mi
+  # targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
   ## see https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/#autoscaling-on-multiple-metrics-and-custom-metrics
   customRules: []
 #     - type: Pods
@@ -197,8 +198,7 @@ tolerations: []
 affinity: {}
 
 php:
-  fpm:
-    conf: |
+  fpmConf: |
       ; Start a new pool named 'www'.
       ; the variable $pool can be used in any directive and will be replaced by the
       ; pool name ('www' here)

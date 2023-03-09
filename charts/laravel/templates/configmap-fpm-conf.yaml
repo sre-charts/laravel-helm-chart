@@ -6,4 +6,4 @@ metadata:
     {{- include "laravel.labels" . | nindent 4 }}
 data:
   www.conf: |
-    {{- tpl .Values.php.fpm.conf . | nindent 4 }}
+    {{- tpl .Values.php.fpmConf . | nindent 4 }}
