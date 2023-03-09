@@ -3,6 +3,16 @@ entries:
   laravel:
   - apiVersion: v2
     appVersion: 0.1.7
+    created: "2023-03-09T14:09:43.303155699Z"
+    description: Helm chart for Laravel applications
+    digest: 518fcdc2a45d2bbde6a1dadf6f8d79ab0f9a5b8ba150d359a0c5f6096a90cc0e
+    name: laravel
+    type: application
+    urls:
+    - https://github.com/sre-charts/laravel-helm-chart/releases/download/laravel-0.4.5/laravel-0.4.5.tgz
+    version: 0.4.5
+  - apiVersion: v2
+    appVersion: 0.1.7
     created: "2023-03-09T07:39:50.634110768Z"
     description: Helm chart for Laravel applications
     digest: 61a0f0a5a3381c327da4fd7b1a604b5bbbdeb3941489cd4ccf012eeeefeaf937
@@ -181,4 +191,4 @@ entries:
     urls:
     - https://github.com/sre-charts/laravel-helm-chart/releases/download/laravel-0.1.5/laravel-0.1.5.tgz
     version: 0.1.5
-generated: "2023-03-09T07:39:50.634485367Z"
+generated: "2023-03-09T14:09:43.303349598Z"
