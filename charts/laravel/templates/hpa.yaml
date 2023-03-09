@@ -1,5 +1,9 @@
 {{- if .Values.autoscaling.enabled }}
-apiVersion: {{ include "common.capabilities.hpa.apiVersion" ( dict "context" $ ) }}
+{{- if semverCompare "<1.23-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: autoscaling/v2beta1
+{{- else }}
+apiVersion: autoscaling/v2beta2
+{{- end}}
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "laravel.fullname" . }}
@@ -21,7 +25,7 @@ spec:
     - type: Resource
       resource:
         name: cpu
-        {{- if semverCompare "<1.23-0" (include "common.capabilities.kubeVersion" .) }}
+        {{- if semverCompare if semverCompare "<1.23-0" .Capabilities.KubeVersion.GitVersion -}}
         targetAverageUtilization: {{ .Values.autoscaling.targetCPU }}
         {{- else }}
         target:
@@ -33,7 +37,7 @@ spec:
     - type: Resource
       resource:
         name: memory
-        {{- if semverCompare "<1.23-0" (include "common.capabilities.kubeVersion" .) }}
+        {{- if semverCompare if semverCompare "<1.23-0" .Capabilities.KubeVersion.GitVersion -}}
         targetAverageUtilization: {{ .Values.autoscaling.targetMemory }}
         {{- else }}
         target:
