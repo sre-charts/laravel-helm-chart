@@ -167,8 +167,8 @@ autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 10
-  # targetCPU: 80
-  targetMemory: 80
+  targetCPU: 80
+  # targetMemory: 100Mi
 
   ## see https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/#autoscaling-on-multiple-metrics-and-custom-metrics
   customRules: []
