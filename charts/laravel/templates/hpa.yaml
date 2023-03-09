@@ -1,9 +1,5 @@
 {{- if .Values.autoscaling.enabled }}
-{{- if semverCompare "<1.23-0" .Capabilities.KubeVersion.GitVersion -}}
-apiVersion: autoscaling/v2beta1
-{{- else }}
 apiVersion: autoscaling/v2beta2
-{{- end}}
 kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "laravel.fullname" . }}
@@ -25,25 +21,17 @@ spec:
     - type: Resource
       resource:
         name: cpu
-        {{- if semverCompare if semverCompare "<1.23-0" .Capabilities.KubeVersion.GitVersion -}}
-        targetAverageUtilization: {{ .Values.autoscaling.targetCPU }}
-        {{- else }}
         target:
           type: Utilization
           averageUtilization: {{ .Values.autoscaling.targetCPU }}
-        {{- end }}
   {{- end }}
   {{- if .Values.autoscaling.targetMemory }}
     - type: Resource
       resource:
         name: memory
-        {{- if semverCompare if semverCompare "<1.23-0" .Capabilities.KubeVersion.GitVersion -}}
-        targetAverageUtilization: {{ .Values.autoscaling.targetMemory }}
-        {{- else }}
         target:
           type: Utilization
           averageUtilization: {{ .Values.autoscaling.targetMemory }}
-        {{- end }}
   {{- end }}
   {{- if .Values.autoscaling.customRules -}}
     {{- toYaml .Values.autoscaling.customRules | nindent 4}}
